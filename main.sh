@@ -1,2 +1,2 @@
 export PYTHONPATH=$(pwd)
-python3 main.py
+python3 mazesolver/main.py

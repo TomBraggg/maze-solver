@@ -1,7 +1,8 @@
-from graphics import Window, Line, Point, Cell, Maze
+from mazesolver.graphics import Window, Line, Point, Cell, Maze
+import random
 
 
-win = Window(800, 600)
+win = Window(1000, 1000)
 
 p1 = Point(500, 100)
 p2 = Point(500, 200)
@@ -14,8 +15,8 @@ top_left_2 = Point(400, 400)
 bot_right_2 = Point(500, 500)
 cell_2 = Cell(top_left_2, bot_right_2)
 
-origin = Point(0, 0)
-maze = Maze(origin, 10, 10, 50, 50)
+seed = random.random()
+maze = Maze(5, 5, seed)
 
 
 def main():
