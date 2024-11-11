@@ -16,12 +16,12 @@ class Maze(Drawable):
         self.num_rows = num_rows
         self.num_cols = num_cols
         self._num_cells = num_rows * num_cols
-        self._cells = []
+        self.cells = []
         for col in range(self.num_cols):
             _row = []
             for row in range(self.num_rows):
                 _row.append(None)
-            self._cells.append(_row)
+            self.cells.append(_row)
         if seed == None:
             random.seed(0)
         else:
@@ -29,7 +29,7 @@ class Maze(Drawable):
 
     def update(self, win: Window):
         self._create_cells(win.height, win.width)
-        for row in self._cells:
+        for row in self.cells:
             for cell in row:
                 win.update(cell)
                 self._animate(win)
@@ -48,7 +48,7 @@ class Maze(Drawable):
                 self._assign_cell_neighbours(cell)
                 self._get_cell_position(cell, cells_created_counter)
                 self._build_walls(cell)
-                self._cells[row_index][col_index] = cell
+                self.cells[row_index][col_index] = cell
                 cells_created_counter += 1
                 top_left.x += cell_width
             top_left.x -= cell_width * self.num_rows
@@ -90,22 +90,22 @@ class Maze(Drawable):
     
     def _assign_cell_neighbours(self, cell) -> None:
         if cell.col_index - 1 >= 0:
-            left_neighbour = self._cells[cell.row_index][cell.col_index - 1]
+            left_neighbour = self.cells[cell.row_index][cell.col_index - 1]
             if left_neighbour != None:
                 cell.neighbours[Cell.Position.LEFT] = left_neighbour
                 left_neighbour.neighbours[Cell.Position.RIGHT] = cell
         if cell.col_index + 1 < self.num_cols:
-            right_neighbour = self._cells[cell.row_index][cell.col_index + 1]
+            right_neighbour = self.cells[cell.row_index][cell.col_index + 1]
             if right_neighbour != None:
                 cell.neighbours[Cell.Position.RIGHT] = right_neighbour
                 right_neighbour.neighbours[Cell.Position.LEFT] = cell
         if cell.row_index - 1 >= 0:
-            top_neighbour = self._cells[cell.row_index - 1][cell.col_index]
+            top_neighbour = self.cells[cell.row_index - 1][cell.col_index]
             if top_neighbour != None:
                 cell.neighbours[Cell.Position.TOP] = top_neighbour
                 top_neighbour.neighbours[Cell.Position.BOT] = cell
         if cell.row_index + 1 < self.num_rows:
-            bot_neighbour = self._cells[cell.row_index + 1][cell.col_index]
+            bot_neighbour = self.cells[cell.row_index + 1][cell.col_index]
             if bot_neighbour != None:
                 cell.neighbours[Cell.Position.BOT] = bot_neighbour
                 bot_neighbour.neighbours[Cell.Position.TOP] = cell

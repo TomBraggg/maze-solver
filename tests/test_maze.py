@@ -10,5 +10,5 @@ def test_maze():
     num_cols = 10
     maze = Maze(num_rows, num_cols)
     assert maze._num_cells == num_rows * num_cols
-    assert len(maze._cells) == 10
-    assert len(maze._cells[0]) == 10
+    assert len(maze.cells) == 10
+    assert len(maze.cells[0]) == 10

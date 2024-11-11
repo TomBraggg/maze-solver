@@ -1,4 +1,7 @@
 from graph import Graph
+from window import Window
+from drawable import Drawable
+from cell import Cell
 
 
 class Mapper():
@@ -10,8 +13,23 @@ class Mapper():
     def get_weighted_graph_of_maze(self):
         pass
 
-    def _move(self):
-        pass
+    def update(self, win: Window, cell1: Cell, cell2: Cell) -> None:
+        undo = False
+        if undo:
+            fill_colour = "red"
+        else:
+            fill_colour = "green"
+        cell1_midpoint = cell1.get_cell_midpoint()
+        cell2_midpoint = cell2.get_cell_midpoint()
+        self.id = win.canvas.create_line(
+            cell1_midpoint.x,
+            cell1_midpoint.y,
+            cell2_midpoint.x,
+            cell2_midpoint.y,
+            fill=fill_colour,
+            width=2
+        )
+        
 
     # def solve(self, win:Window):
     #     path_exists = True

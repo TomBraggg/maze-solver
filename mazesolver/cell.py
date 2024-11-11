@@ -81,7 +81,7 @@ class Cell(Drawable):
         if bot and self.walls[Cell.Position.BOT] != None:
             self.walls[Cell.Position.BOT].erased = True
 
-    def _get_cell_midpoint(self) -> Point:
+    def get_cell_midpoint(self) -> Point:
         left = self._top_left_corner.x
         right = self._bottom_right_corner.x
         top = self._top_left_corner.y
