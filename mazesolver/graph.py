@@ -19,3 +19,6 @@ class Graph:
 
     def adjacent_nodes(self, node):
         return list(self.graph[node])
+
+    def __repr__(self):
+        return str(self.graph)

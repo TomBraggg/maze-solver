@@ -11,9 +11,7 @@ mapper = Mapper()
 
 def main():
     win.update(maze)
-    cell1 = maze.cells[0][0]
-    cell2 = maze.cells[0][1]
-    mapper.update(win, cell1, cell2)
+    mapper.get_weighted_graph_of_maze(win, maze)
     win.wait_for_close()
 
 if __name__ == "__main__":

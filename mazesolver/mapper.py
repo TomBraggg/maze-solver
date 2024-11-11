@@ -2,6 +2,7 @@ from graph import Graph
 from window import Window
 from drawable import Drawable
 from cell import Cell
+from maze import Maze
 
 
 class Mapper():
@@ -10,15 +11,25 @@ class Mapper():
         self._y_pos = 0
         self.graph = Graph()
 
-    def get_weighted_graph_of_maze(self):
-        pass
+    def get_weighted_graph_of_maze(self, win: Window, maze: Maze):
+        for row in maze.cells:
+            for cell in row:
+                if cell.neighbours[Cell.Position.LEFT] != None and cell.walls[Cell.Position.LEFT] == None:
+                    self.graph.add_edge(cell, cell.neighbours[Cell.Position.LEFT])
+                    self.update(win, cell, cell.neighbours[Cell.Position.LEFT])
+                if cell.neighbours[Cell.Position.RIGHT] != None and cell.walls[Cell.Position.RIGHT] == None:
+                    self.graph.add_edge(cell, cell.neighbours[Cell.Position.RIGHT])
+                    self.update(win, cell, cell.neighbours[Cell.Position.RIGHT])
+                if cell.neighbours[Cell.Position.TOP] != None and cell.walls[Cell.Position.TOP] == None:
+                    self.graph.add_edge(cell, cell.neighbours[Cell.Position.TOP])
+                    self.update(win, cell, cell.neighbours[Cell.Position.TOP])
+                if cell.neighbours[Cell.Position.BOT] != None and cell.walls[Cell.Position.BOT] == None:
+                    self.graph.add_edge(cell, cell.neighbours[Cell.Position.BOT])
+                    self.update(win, cell, cell.neighbours[Cell.Position.BOT])
+
 
     def update(self, win: Window, cell1: Cell, cell2: Cell) -> None:
-        undo = False
-        if undo:
-            fill_colour = "red"
-        else:
-            fill_colour = "green"
+        fill_colour = "green"
         cell1_midpoint = cell1.get_cell_midpoint()
         cell2_midpoint = cell2.get_cell_midpoint()
         self.id = win.canvas.create_line(
