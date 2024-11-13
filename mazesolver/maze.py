@@ -32,7 +32,7 @@ class Maze(Drawable):
         for row in self.cells:
             for cell in row:
                 win.update(cell)
-                self._animate(win)
+                # self._animate(win)
 
     def _create_cells(self, win_height: int, win_width: int):
         border_thickness = 50
@@ -111,7 +111,7 @@ class Maze(Drawable):
                 bot_neighbour.neighbours[Cell.Position.TOP] = cell
         
     def _build_walls(self, cell: Cell) -> None:
-        build_chance = 0.25
+        build_chance = 0.3
         cell.build_walls(
             left=random.random() <= build_chance,
             right=random.random() <= build_chance,
@@ -146,3 +146,5 @@ class Maze(Drawable):
         win._redraw()
         time.sleep(delay)
     
+    def __repr__(self):
+        return str(self.cells)

@@ -90,3 +90,6 @@ class Cell(Drawable):
         mid_y = (top + bottom) // 2
         mid_point = Point(mid_x, mid_y)
         return mid_point
+
+    def __repr__(self):
+        return str((self.col_index, self.row_index))

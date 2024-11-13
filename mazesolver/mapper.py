@@ -10,22 +10,26 @@ class Mapper():
         self._x_pos = 0
         self._y_pos = 0
         self.graph = Graph()
+        self.dest = None
 
     def get_weighted_graph_of_maze(self, win: Window, maze: Maze):
         for row in maze.cells:
             for cell in row:
                 if cell.neighbours[Cell.Position.LEFT] != None and cell.walls[Cell.Position.LEFT] == None:
                     self.graph.add_edge(cell, cell.neighbours[Cell.Position.LEFT])
-                    self.update(win, cell, cell.neighbours[Cell.Position.LEFT])
+                    # self.update(win, cell, cell.neighbours[Cell.Position.LEFT])
                 if cell.neighbours[Cell.Position.RIGHT] != None and cell.walls[Cell.Position.RIGHT] == None:
                     self.graph.add_edge(cell, cell.neighbours[Cell.Position.RIGHT])
-                    self.update(win, cell, cell.neighbours[Cell.Position.RIGHT])
+                    # self.update(win, cell, cell.neighbours[Cell.Position.RIGHT])
                 if cell.neighbours[Cell.Position.TOP] != None and cell.walls[Cell.Position.TOP] == None:
                     self.graph.add_edge(cell, cell.neighbours[Cell.Position.TOP])
-                    self.update(win, cell, cell.neighbours[Cell.Position.TOP])
+                    # self.update(win, cell, cell.neighbours[Cell.Position.TOP])
                 if cell.neighbours[Cell.Position.BOT] != None and cell.walls[Cell.Position.BOT] == None:
                     self.graph.add_edge(cell, cell.neighbours[Cell.Position.BOT])
-                    self.update(win, cell, cell.neighbours[Cell.Position.BOT])
+                    # self.update(win, cell, cell.neighbours[Cell.Position.BOT])
+                if cell.position == Cell.Position.BOT_RIGHT:
+                    self.dest = cell
+                
 
 
     def update(self, win: Window, cell1: Cell, cell2: Cell) -> None:
